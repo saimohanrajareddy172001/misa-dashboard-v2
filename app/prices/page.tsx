@@ -53,7 +53,7 @@ export default function PriceTracker() {
       };
       const p = Number(l.unit_price || 0);
       if (p > 0) {
-        e.prices.push({ date: l.invoice_date || "", price: p, vendor: l.vendor });
+        e.prices.push({ date: l.invoice_date || "", price: p, vendor: l.vendor ?? null });
         e.min = Math.min(e.min, p);
         e.max = Math.max(e.max, p);
         e.latest = p;
