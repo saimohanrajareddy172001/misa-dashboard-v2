@@ -41,6 +41,9 @@ export async function POST(req: NextRequest) {
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_SERVICE_KEY,
     anthropicApiKey: process.env.ANTHROPIC_API_KEY,
+    googleOAuthClientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
+    googleOAuthClientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+    googleOAuthRefreshToken: process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
     ...body,
   }
 
