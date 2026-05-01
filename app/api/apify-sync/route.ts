@@ -39,9 +39,8 @@ export async function POST(req: NextRequest) {
   // Pass env-based input so actor doesn't need default input configured in console
   const input = {
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY,
+    supabaseKey: process.env.SUPABASE_SERVICE_KEY,
     anthropicApiKey: process.env.ANTHROPIC_API_KEY,
-    // Spread any override from request body (e.g. dateRange)
     ...body,
   }
 
