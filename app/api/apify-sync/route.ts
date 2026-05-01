@@ -34,15 +34,21 @@ export async function POST(req: NextRequest) {
     // no body, that's fine
   }
 
-  const url = `https://api.apify.com/v2/acts/${encodeURIComponent(
-    actorId.replace("/", "~")
-  )}/runs?token=${apifyToken}`;
+  const url = `https://api.apify.com/v2/acts/${actorId}/runs?token=${apifyToken}`;
+
+  // Pass env-based input so actor doesn't need default input configured in console
+  const input = {
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY,
+    anthropicApiKey: process.env.ANTHROPIC_API_KEY,
+    // Spread any override from request body (e.g. dateRange)
+    ...body,
+  }
 
   const apifyResp = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    // Empty body = use default input. Or pass {dateRange, ...} to override.
-    body: JSON.stringify(body || {}),
+    body: JSON.stringify(input),
   });
 
   if (!apifyResp.ok) {
